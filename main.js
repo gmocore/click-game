@@ -4,12 +4,19 @@ const five = document.getElementById('5');
 const ten = document.getElementById('10');
 const eleven = document.getElementById('11');
 const twelve = document.getElementById('12');
+const clickDisplay = document.getElementById('click-display');
 
 
+let clickCount = 0;
 
 clickArea.addEventListener('click', () => {
     console.log("area clicked");
+    clickCount++
+    clickDisplay.innerHTML = clickCount
+    
 })
+
+
 
 // TODO  when user clicks multiple buttons, multiple setIntervals run at the same time
 five.addEventListener('click', () => {
