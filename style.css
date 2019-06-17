@@ -28,4 +28,13 @@
     width: 99%;
     height: 30px;
     background-color: green;
+    animation-name: progressWidth;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-play-state: paused;
 }
+
+@keyframes progressWidth {
+    from {width: 99%;}
+    to {width: 0%;}
+  }
