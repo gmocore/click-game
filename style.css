@@ -4,8 +4,17 @@
     background-color: gray;
 }
 
-.timer-countdown-progress-bar {
-    width: 200px;
-    background-color: blue;
+.timer-background {
+    width: 100%;
+    background-color: gray;
     color: #FFF;
+}
+
+#timer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 99%;
+    height: 30px;
+    background-color: green;
 }

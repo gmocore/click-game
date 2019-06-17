@@ -5,7 +5,6 @@ const sixty = document.getElementById('60');
 const ninety = document.getElementById('90');
 const oneTwenty = document.getElementById('120');
 const clickDisplay = document.getElementById('click-display');
-const timerCountdownProgressBar = document.querySelector(".timer-countdown-progress-bar")
 let clickCount = 0;
 
 
@@ -22,11 +21,11 @@ function clickCounterReset() {
 }
 
 
-
 // TODO  when user clicks multiple buttons, multiple setIntervals run at the same time.
 // TODO add reset to clicks when seconds button is selected. functionality is already implemented in 5 seconds button
 thirty.addEventListener('click', () => {
     clickCounterReset()
+    timerCountdown()
     timer.innerHTML = parseInt(thirty.id);
     let timerCounter = parseInt(timer.innerHTML)
     var timerInterval = setInterval(timerCountdown, 1000)
@@ -37,11 +36,12 @@ thirty.addEventListener('click', () => {
             timerCounter--
             timer.innerHTML = timerCounter;
             // TODO smooth transiiton for timer countdown. and when a numbver over 100 is selected, shit breaks
-            timerCountdownProgressBar.style.width = `${timerCounter}%`
+            timer.style.width = `${timerCounter}%`
         }
            
     }
 })
+
 
 sixty.addEventListener('click', () => {
     clickCounterReset()
