@@ -6,10 +6,8 @@ const ninety = document.getElementById('90');
 const oneTwenty = document.getElementById('120');
 const clickDisplay = document.getElementById('click-display');
 const timerCountdownProgressBar = document.querySelector(".timer-countdown-progress-bar")
-
-
-
 let clickCount = 0;
+
 
 clickArea.addEventListener('click', () => {
     console.log("area clicked");
@@ -18,13 +16,17 @@ clickArea.addEventListener('click', () => {
     
 })
 
+function clickCounterReset() {
+    clickCount = 0;
+    clickDisplay.innerHTML = clickCount;
+}
+
 
 
 // TODO  when user clicks multiple buttons, multiple setIntervals run at the same time.
 // TODO add reset to clicks when seconds button is selected. functionality is already implemented in 5 seconds button
 thirty.addEventListener('click', () => {
-    clickCount = 0;
-    clickDisplay.innerHTML = clickCount
+    clickCounterReset()
     timer.innerHTML = parseInt(thirty.id);
     let timerCounter = parseInt(timer.innerHTML)
     var timerInterval = setInterval(timerCountdown, 1000)
@@ -40,7 +42,9 @@ thirty.addEventListener('click', () => {
            
     }
 })
+
 sixty.addEventListener('click', () => {
+    clickCounterReset()
     timer.innerHTML = parseInt(sixty.id);
     let timerCounter = parseInt(timer.innerHTML)
     var timerInterval = setInterval(timerCountdown, 1000)
@@ -55,6 +59,7 @@ sixty.addEventListener('click', () => {
     }
 })
 ninety.addEventListener('click', () => {
+    clickCounterReset()
     timer.innerHTML = parseInt(ninety.id);
     let timerCounter = parseInt(timer.innerHTML)
     var timerInterval = setInterval(timerCountdown, 1000)
@@ -69,6 +74,7 @@ ninety.addEventListener('click', () => {
     }
 })
 oneTwenty.addEventListener('click', () => {
+    clickCounterReset()
     timer.innerHTML = parseInt(oneTwenty.id);
     let timerCounter = parseInt(timer.innerHTML)
     var timerInterval = setInterval(timerCountdown, 1000)
