@@ -15,31 +15,17 @@
   text-align: center;
 }
 
-.timer-countdown-progress-bar {
-  width: 200px;
-  background-color: blue;
-  color: #fff;
-}
-
-#progress-background {
-  background-color: gray;
-  width: 100%;
-  height: 30px;
-}
-
-#progress-bar {
-  background-color: green;
-  width: 100%;
-  height: 30px;
-  animation-name: progressWidth;
-  animation-duration: 30s;
-}
-
-@keyframes progressWidth {
-  from {
+.timer-background {
     width: 100%;
-  }
-  to {
-    width: 0%;
-  }
+    background-color: gray;
+    color: #FFF;
+}
+
+#timer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 99%;
+    height: 30px;
+    background-color: green;
 }
