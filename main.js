@@ -1,6 +1,6 @@
 // TODO:  When user clicks multiple buttons, multiple timers run at the same time.
 // TODO:  Need a reset button of some sort.  Since when you click on one of the seconds buttons it will start the timer and when the timer is done clicking the button doesn't do anything.
-// TODO:  innerHTML for startTimer() just sets the innerHTML but doesn't update as timer bar goes down.
+// TODO:  Still need some modifications to setting the timers InnerHTML.  We don't want the green bar to come back when finished.
 // TODO:  Update thirty’s ID to no longer be 5 seconds.  Update in main.js and index.html
 
 // Functionality Option: click listener for whole window.
