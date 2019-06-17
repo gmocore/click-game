@@ -29,7 +29,6 @@ function clickCounterReset() {
 // TODO add reset to clicks when seconds button is selected. functionality is already implemented in 5 seconds button
 thirty.addEventListener('click', () => {
     clickCounterReset()
-    timerCountdown()
     timer.innerHTML = parseInt(thirty.id);
     let timerCounter = parseInt(timer.innerHTML)
     var timerInterval = setInterval(timerCountdown, 1000)
@@ -44,7 +43,7 @@ thirty.addEventListener('click', () => {
         }
     }
   }
-});
+);
 
 sixty.addEventListener("click", () => {
   clickCounterReset();
