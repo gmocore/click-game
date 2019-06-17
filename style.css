@@ -16,25 +16,30 @@
 }
 
 .timer-background {
-    width: 100%;
-    background-color: gray;
-    color: #FFF;
+  margin-top: 25px;
+  width: 100%;
+  background-color: gray;
+  color: #fff;
 }
 
 #timer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 99%;
-    height: 30px;
-    background-color: green;
-    animation-name: progressWidth;
-    animation-iteration-count: 1;
-    animation-timing-function: linear;
-    animation-play-state: paused;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 99%;
+  height: 30px;
+  background-color: green;
+  animation-name: progressWidth;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  animation-play-state: paused;
 }
 
 @keyframes progressWidth {
-    from {width: 99%;}
-    to {width: 0%;}
+  from {
+    width: 99%;
   }
+  to {
+    width: 0%;
+  }
+}
