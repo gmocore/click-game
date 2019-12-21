@@ -2,16 +2,16 @@
 // TODO:  Update thirty’s ID to no longer be 5 seconds.  Update in main.js and index.html
 // TODO:  Make better styles
 
-// Variables
 const clickArea = document.querySelector(".click-area");
 const timer = document.getElementById("timer");
 const timerButtons = document.querySelectorAll('.button')
 const clickDisplay = document.getElementById("click-display");
 let clickCount = 0;
 let gameStarted = false;
+let timerInterval
 
 timerButtons.forEach((timerButton) => {
-  timerButton.addEventListener('click', startTimer);
+  timerButton.addEventListener('click', startGame);
 })
 
 function clickAreaCounter() {
@@ -27,38 +27,41 @@ function clickCounterReset() {
   }
 }
 
-function startTimer(event) {
+function clearAnimation() {
+  timer.classList.remove("timer-animation");
+}
+
+function setAnimation(clickedItem) {
+  timer.classList.add("timer-animation");
+  timer.style.animationDuration = `${clickedItem}s`;
+}
+
+function stopTimerInterval() {
+  clearInterval(timerInterval);
+  clearAnimation()
+}
+
+function setTimerInterval(clickedItem) {
+  timerInterval = setInterval(function() {
+    clickedItem--;
+    timer.innerHTML = clickedItem;
+    if (clickedItem == 0) {
+      gameStarted = false
+      stopTimerInterval()
+      timer.innerHTML = 'You Clicked ' + clickCount + ' Times.';
+      clickArea.removeEventListener("click", clickAreaCounter);
+    }
+  }, 1000);
+}
+
+function startGame(event) {
   clickCounterReset()
-  let timerInterval
+  let clickedItem = event.target.id;
   if (gameStarted == false) {
     gameStarted = true
-    let clickedItem = event.target.id;
     timer.innerHTML = clickedItem;
-    timer.classList.add("timer-animation");
-    timer.style.animationDuration = `${clickedItem}s`;
+    setAnimation(clickedItem)
     setTimerInterval(clickedItem)
-  }
-  
-  function clearAnimation() {
-    timer.classList.remove("timer-animation");
-  }
-  
-  function setTimerInterval(clickedItem) {
-    timerInterval = setInterval(function() {
-      clickedItem--;
-      timer.innerHTML = clickedItem;
-      if (clickedItem == 0) {
-        gameStarted = false
-        stopTimerInterval()
-        clearAnimation()
-        timer.innerHTML = 'You Clicked ' + clickCount + ' Times.';
-        clickArea.removeEventListener("click", clickAreaCounter);
-      }
-    }, 1000);
-  }
-  
-  function stopTimerInterval() {
-    clearInterval(timerInterval);
   }
 }
 
