@@ -1,71 +1,112 @@
-// TODO:  When user clicks multiple buttons, multiple timers run at the same time.
-// TODO:  Need a reset button of some sort.  Since when you click on one of the seconds buttons it will start the timer and when the timer is done clicking the button doesn't do anything.
-// TODO:  Still need some modifications to setting the timers InnerHTML.  We don't want the green bar to come back when finished.
+// TODO:  Need a reset button of some sort. 
 // TODO:  Update thirty’s ID to no longer be 5 seconds.  Update in main.js and index.html
-// TODO:  Need to make click area not clickable when timer is done.  I have a removeEventHandler in the clearInterval for now if you comment it out it will work... But I'm not sure that is the best way to do it.
-
-// Functionality Option: click listener for whole window.
-// window.addEventListener("click", () => {
-//   console.log("clicked");
-//   clickCount++;
-//   clickDisplay.innerHTML = clickCount;
-// });
+// TODO:  Make better styles
 
 // Variables
 const clickArea = document.querySelector(".click-area");
 const timer = document.getElementById("timer");
-// const parentTimeSelect = document.querySelector("#time-select");
 const timerButtons = document.querySelectorAll('.button')
 const clickDisplay = document.getElementById("click-display");
 let clickCount = 0;
 let gameStarted = false;
 
-// EVENTLISTENERS
 timerButtons.forEach((timerButton) => {
-  timerButton.addEventListener('click', startTimer, false);
+  timerButton.addEventListener('click', startTimer);
 })
-// parentTimeSelect.addEventListener("click", startTimer);
-clickArea.addEventListener("click", clickAreaCounter);
 
-// FUNCTIONS
 function clickAreaCounter() {
   clickCount++;
   clickDisplay.innerHTML = clickCount;
 }
 
 function clickCounterReset() {
-  clickCount = 0;
-  clickDisplay.innerHTML = clickCount;
+  if (gameStarted == false) {
+    clickCount = 0;
+    clickDisplay.innerHTML = clickCount;
+    clickArea.addEventListener("click", clickAreaCounter);
+  }
 }
 
 function startTimer(event) {
   clickCounterReset()
+  let timerInterval
   if (gameStarted == false) {
     gameStarted = true
-    var clickedItem = event.target.id;
-    // timer.style.animationPlayState = "running";
+    let clickedItem = event.target.id;
     timer.innerHTML = clickedItem;
     timer.classList.add("timer-animation");
     timer.style.animationDuration = `${clickedItem}s`;
-    var timerInterval = setInterval(function() {
+    setTimerInterval(clickedItem)
+  }
+  
+  function clearAnimation() {
+    timer.classList.remove("timer-animation");
+  }
+  
+  function setTimerInterval(clickedItem) {
+    timerInterval = setInterval(function() {
       clickedItem--;
       timer.innerHTML = clickedItem;
       if (clickedItem == 0) {
         gameStarted = false
-        console.log(gameStarted)
+        stopTimerInterval()
         clearAnimation()
         timer.innerHTML = 'You Clicked ' + clickCount + ' Times.';
-        // clickArea.removeEventListener("click", clickAreaCounter, false);
+        clickArea.removeEventListener("click", clickAreaCounter);
       }
     }, 1000);
   }
-  event.stopPropagation()
-  function clearAnimation() {
+  
+  function stopTimerInterval() {
     clearInterval(timerInterval);
-    timer.classList.remove("timer-animation");
   }
 }
 
+
+
+
+// Playground
+// function startTimer(event) {
+//   clickCounterReset()
+//   let timerInterval
+//   if (gameStarted == false) {
+//     gameStarted = true
+//     let clickedItem = event.target.id;
+//     timer.innerHTML = clickedItem;
+//     timer.classList.add("timer-animation");
+//     timer.style.animationDuration = `${clickedItem}s`;
+//     setTimerInterval(clickedItem)
+//   } else if (gameStarted == true) {
+//     stopTimerInterval()
+//     timer.style.animationDuration = `0s`;
+//     clearAnimation()
+//     timer.innerHTML = 'You Clicked ' + clickCount + ' Times.';
+//     clickArea.removeEventListener("click", clickAreaCounter);
+//   }
+  
+//   function clearAnimation() {
+//     timer.classList.remove("timer-animation");
+//   }
+  
+//   function setTimerInterval(clickedItem) {
+//     timerInterval = setInterval(function() {
+//       clickedItem--;
+//       timer.innerHTML = clickedItem;
+//       console.log('setInterval is still running')
+//       if (clickedItem == 0) {
+//         gameStarted = false
+//         stopTimerInterval()
+//         clearAnimation()
+//         timer.innerHTML = 'You Clicked ' + clickCount + ' Times.';
+//         clickArea.removeEventListener("click", clickAreaCounter);
+//       }
+//     }, 1000);
+//   }
+  
+//   function stopTimerInterval() {
+//     clearInterval(timerInterval);
+//   }
+// }
 
   
 
