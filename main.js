@@ -1,3 +1,4 @@
+// TODO:  Fix the reset to not let them click in the click area during the transition
 // TODO:  Update thirty’s ID to no longer be 5 seconds.  Update in main.js and index.html
 // TODO:  Make better styles
 
@@ -65,6 +66,7 @@ function startGame(event) {
     stopTimerInterval()
     gameStarted = false
     timer.innerHTML = 'Game Reset'
+    clickDisplay.innerHTML = 'Game Reset'
     setTimeout(() => {
       startGame(event)
     }, 1000)
