@@ -14,13 +14,18 @@
 // Variables
 const clickArea = document.querySelector(".click-area");
 const timer = document.getElementById("timer");
-const parentTimeSelect = document.querySelector("#time-select");
+// const parentTimeSelect = document.querySelector("#time-select");
+const timerButtons = document.querySelectorAll('.button')
 const clickDisplay = document.getElementById("click-display");
 let clickCount = 0;
+let gameStarted = false;
 
 // EVENTLISTENERS
-parentTimeSelect.addEventListener("click", startTimer, false);
-clickArea.addEventListener("click", clickAreaCounter, false);
+timerButtons.forEach((timerButton) => {
+  timerButton.addEventListener('click', startTimer, false);
+})
+// parentTimeSelect.addEventListener("click", startTimer);
+clickArea.addEventListener("click", clickAreaCounter);
 
 // FUNCTIONS
 function clickAreaCounter() {
@@ -35,24 +40,34 @@ function clickCounterReset() {
 
 function startTimer(event) {
   clickCounterReset()
-  if (event.target !== event.currentTarget) {
+  if (gameStarted == false) {
+    gameStarted = true
     var clickedItem = event.target.id;
-    timer.style.animationDuration = `${clickedItem}s`;
-    timer.style.animationPlayState = "running";
+    // timer.style.animationPlayState = "running";
     timer.innerHTML = clickedItem;
+    timer.classList.add("timer-animation");
+    timer.style.animationDuration = `${clickedItem}s`;
     var timerInterval = setInterval(function() {
       clickedItem--;
       timer.innerHTML = clickedItem;
       if (clickedItem == 0) {
-        clearInterval(timerInterval);
+        gameStarted = false
+        console.log(gameStarted)
+        clearAnimation()
         timer.innerHTML = 'You Clicked ' + clickCount + ' Times.';
         // clickArea.removeEventListener("click", clickAreaCounter, false);
       }
     }, 1000);
   }
   event.stopPropagation()
+  function clearAnimation() {
+    clearInterval(timerInterval);
+    timer.classList.remove("timer-animation");
+  }
 }
 
+
+  
 
 
 //////////////////////////////////////////////////////
@@ -83,7 +98,7 @@ function startTimer(event) {
 ////////////////////////////////////////////////
 
 // Basically comment everything else out above and I just have it running on auto pilot... I gave up as I want to just use javascript not jquery
-// You also have to add this script tag in the head <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+// You also have to add this script tag in the head<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 // https://stackoverflow.com/questions/24530908/showing-a-time-countdown-progress-bar
 // https://codepen.io/Rudchyk/pen/qNOEGj
 
