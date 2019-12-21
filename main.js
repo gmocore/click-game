@@ -1,4 +1,3 @@
-// TODO:  Need a reset button of some sort. 
 // TODO:  Update thirty’s ID to no longer be 5 seconds.  Update in main.js and index.html
 // TODO:  Make better styles
 
@@ -62,6 +61,13 @@ function startGame(event) {
     timer.innerHTML = clickedItem;
     setAnimation(clickedItem)
     setTimerInterval(clickedItem)
+  } else {
+    stopTimerInterval()
+    gameStarted = false
+    timer.innerHTML = 'Game Reset'
+    setTimeout(() => {
+      startGame(event)
+    }, 1000)
   }
 }
 
